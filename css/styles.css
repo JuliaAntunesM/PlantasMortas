@@ -226,15 +226,22 @@ body {
 
 .testimonial-card {
   background: var(--card);
-  border: 1.5px dashed var(--sage);
+  border: 1px solid var(--beige);
   border-radius: var(--radius);
   padding: 20px;
   margin-bottom: 16px;
   box-shadow: var(--shadow);
 }
+.testimonial-card .t-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
 .testimonial-card .photo-slot {
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
   border-radius: 50%;
   background: var(--beige);
   display: flex;
@@ -242,19 +249,62 @@ body {
   justify-content: center;
   font-size: 0.7rem;
   color: var(--ink-soft);
-  margin-bottom: 12px;
   overflow: hidden;
 }
 .testimonial-card .photo-slot img { width: 100%; height: 100%; object-fit: cover; }
-.testimonial-card blockquote {
+.testimonial-card .t-name { font-weight: 700; color: var(--olive-dark); }
+.testimonial-card .t-context { font-size: 0.82rem; color: var(--ink-soft); }
+.testimonial-card .t-title {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   color: var(--ink);
+  line-height: 1.4;
   margin-bottom: 12px;
 }
-.testimonial-card .t-name { font-weight: 700; color: var(--olive-dark); }
-.testimonial-card .t-meta { font-size: 0.85rem; color: var(--ink-soft); margin-top: 6px; }
+.testimonial-card .t-text {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.testimonial-card .t-closing {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--olive-dark);
+  margin: 12px 0;
+}
+.testimonial-card .t-shift {
+  background: #eef2e6;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.testimonial-card .t-shift-row {
+  display: flex;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--ink);
+  align-items: baseline;
+}
+.testimonial-card .t-shift-label {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--earth);
+  background: var(--beige);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+.testimonial-card .t-shift-label.after {
+  color: var(--olive-dark);
+  background: #dde7d2;
+}
 .testimonial-card .t-result {
   margin-top: 12px;
   border-radius: 12px;
@@ -264,6 +314,13 @@ body {
   width: 100%;
   display: block;
   object-fit: cover;
+}
+.proof-footer {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  text-align: center;
+  margin: 18px 0 8px;
 }
 .proof-disclaimer {
   font-size: 0.8rem;

@@ -112,6 +112,9 @@
 
     proof.testimonials.forEach(function (t) {
       var card = el("div", "testimonial-card");
+
+      // cabeçalho: foto + nome/idade/contexto
+      var head = el("div", "t-head");
       var photo = el("div", "photo-slot");
       if (t.photo) {
         var img = document.createElement("img");
@@ -121,12 +124,20 @@
       } else {
         photo.textContent = "[foto]";
       }
-      card.appendChild(photo);
-      var quote = el("blockquote", null, "“" + t.quote + "”");
-      card.appendChild(quote);
-      card.appendChild(el("div", "t-name", t.name));
-      card.appendChild(el("div", "t-meta",
-        "Antes: " + t.before + " · Descoberta: " + t.discovery + " · Resultado: " + t.result));
+      head.appendChild(photo);
+      var who = el("div", "t-who");
+      who.appendChild(el("div", "t-name", t.name + (t.age ? ", " + t.age + " anos" : "")));
+      if (t.context) who.appendChild(el("div", "t-context", t.context));
+      head.appendChild(who);
+      card.appendChild(head);
+
+      // título emocional + depoimento
+      card.appendChild(el("blockquote", "t-title", "“" + t.title + "”"));
+      (t.text || "").split(/\n\n+/).forEach(function (para) {
+        card.appendChild(el("p", "t-text", para));
+      });
+      if (t.closing) card.appendChild(el("p", "t-closing", t.closing));
+
       if (t.resultPhoto) {
         var result = el("div", "t-result");
         var rimg = document.createElement("img");
@@ -139,7 +150,8 @@
       container.appendChild(card);
     });
 
-    container.appendChild(el("p", "proof-disclaimer", proof.disclaimer));
+    if (proof.footer) container.appendChild(el("p", "proof-footer", proof.footer));
+    if (proof.disclaimer) container.appendChild(el("p", "proof-disclaimer", proof.disclaimer));
     container.appendChild(renderPrimaryButton(screen.button || "Continuar", next));
   }
 

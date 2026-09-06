@@ -38,38 +38,50 @@ const QUIZ_CONTENT = {
     ]
   },
 
-  /* ---------- PROVAS (placeholders — inserir provas reais) ---------- */
+  /* ---------- PROVAS ----------
+     Depoimentos reais das alunas. Ao editar, preservar a
+     experiência real — corrigir gramática sem inventar detalhes. */
   proof: {
-    title: "Mas será que isso funciona para quem sempre achou que era ruim com plantas?",
-    subtitle: "É aqui que entram histórias reais.",
-    disclaimer: "Espaços reservados para depoimentos reais. Nenhum depoimento foi inventado.",
+    title: "Você não precisa ser a pessoa que nasceu sabendo cuidar de plantas.",
+    subtitle: "Às vezes, tudo começa quando você aprende a observar o que a planta está tentando mostrar.",
+    footer: "Cada planta continua tendo suas próprias necessidades. A diferença é que você passa a ter critérios melhores para entender o que está acontecendo.",
+    disclaimer: null,
     testimonials: [
       {
-        photo: "Alunas/1.webp",        // foto de perfil da aluna
-        resultPhoto: "Resultado/1.webp", // foto do resultado dela
-        quote: "[INSERIR DEPOIMENTO REAL]",
-        name: "[INSERIR NOME REAL]",
-        before: "[Situação inicial]",
-        discovery: "[Descoberta]",
-        result: "[Resultado]"
+        name: "Marina",
+        age: 34,
+        photo: "Alunas/1.webp",
+        resultPhoto: "Resultado/1.webp",
+        title: "Finalmente consegui cuidar da planta que ganhei de quem eu amo.",
+        context: "Ganhou uma planta do parceiro em uma data especial.",
+        text: "Eu sempre perdia minhas plantas porque nunca sabia se estava regando demais ou de menos. O pior era quando era uma planta que eu tinha ganhado de alguém especial. Depois que comecei a entender melhor os sinais da planta e observar antes de cuidar, fiquei muito mais segura. Hoje consigo aproveitar muito mais essas plantas dentro da minha casa.",
+        closing: null,
+        before: "Regava sem saber exatamente quando e quanto.",
+        after: "Passou a observar os sinais da planta antes de agir."
       },
       {
+        name: "Camila",
+        age: 29,
         photo: "Alunas/2.webp",
         resultPhoto: "Resultado/2.webp",
-        quote: "[INSERIR DEPOIMENTO REAL]",
-        name: "[INSERIR NOME REAL]",
-        before: "[Situação inicial]",
-        discovery: "[Descoberta]",
-        result: "[Resultado]"
+        title: "Minha casa ficou muito mais aconchegante.",
+        context: "Queria deixar o apartamento mais acolhedor.",
+        text: "Eu comprava plantas lindas para deixar meu apartamento mais bonito, mas depois de algumas semanas elas começavam a ficar diferentes e eu não sabia o que fazer. Eu achava que simplesmente não tinha jeito com plantas. Aprender a observar o ambiente e entender melhor o que cada planta precisava mudou isso. Hoje tenho muito mais confiança para cuidar delas.",
+        closing: null,
+        before: "Comprava plantas bonitas, mas não conseguia mantê-las bem.",
+        after: "Aprendeu a observar ambiente e sinais da planta."
       },
       {
+        name: "Renata",
+        age: 32,
         photo: "Alunas/3.webp",
         resultPhoto: "Resultado/3.webp",
-        quote: "[INSERIR DEPOIMENTO REAL]",
-        name: "[INSERIR NOME REAL]",
-        before: "[Situação inicial]",
-        discovery: "[Descoberta]",
-        result: "[Resultado]"
+        title: "Descobri que eu não precisava ter 'dedo verde'.",
+        context: "Já havia perdido várias plantas e flores.",
+        text: "Já tinha perdido tantas plantas que eu realmente achava que não levava jeito para cuidar delas. Quando uma folha ficava amarela ou a planta começava a murchar, eu ficava sem saber o que fazer. O que mudou foi aprender a observar os sinais antes de agir. Hoje ainda estou aprendendo, mas não fico mais completamente perdida.",
+        closing: null,
+        before: "Acreditava que não tinha 'dedo verde'.",
+        after: "Entendeu que pode aprender a observar e interpretar sinais."
       }
     ]
   },
@@ -84,7 +96,7 @@ const QUIZ_CONTENT = {
     discovery: "Imagens/5.webp",   // tela 8 — descoberta
     evolution: "Imagens/6.webp",   // tela 11 — evolução
     emotional: "Imagens/7.webp",   // tela 17 — fechamento emocional
-    offer: null                    // tela 19 — oferta (aguardando imagem do produto)
+    offer: "Imagens/7.webp"        // tela 19 — oferta (provisória; trocar pela imagem do produto)
   },
 
   /* ---------- PERSONALIZAÇÃO DA TELA FINAL ----------
