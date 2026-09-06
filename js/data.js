@@ -96,7 +96,8 @@ const QUIZ_CONTENT = {
     discovery: "Imagens/5.webp",   // tela 8 — descoberta
     evolution: "Imagens/6.webp",   // tela 11 — evolução
     emotional: "Imagens/7.webp",   // tela 17 — fechamento emocional
-    offer: "Imagens/7.webp"        // tela 19 — oferta (provisória; trocar pela imagem do produto)
+    newBelief: "Imagens/9.webp",   // tela 9 — nova crença
+    offer: "Imagens/8.webp"        // tela 19 — oferta (provisória; trocar pela imagem do produto)
   },
 
   /* ---------- PERSONALIZAÇÃO DA TELA FINAL ----------
@@ -265,6 +266,7 @@ const QUIZ_CONTENT = {
     {
       id: "nova-crenca",
       type: "story",
+      image: "newBelief",
       paragraphs: [
         "Quando você começa a observar antes de agir, o cuidado muda.",
         "Em vez de pensar: “Já está na hora de regar?”",
