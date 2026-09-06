@@ -255,6 +255,16 @@ body {
 }
 .testimonial-card .t-name { font-weight: 700; color: var(--olive-dark); }
 .testimonial-card .t-meta { font-size: 0.85rem; color: var(--ink-soft); margin-top: 6px; }
+.testimonial-card .t-result {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.testimonial-card .t-result img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
 .proof-disclaimer {
   font-size: 0.8rem;
   color: var(--ink-soft);

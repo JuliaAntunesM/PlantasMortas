@@ -127,6 +127,15 @@
       card.appendChild(el("div", "t-name", t.name));
       card.appendChild(el("div", "t-meta",
         "Antes: " + t.before + " · Descoberta: " + t.discovery + " · Resultado: " + t.result));
+      if (t.resultPhoto) {
+        var result = el("div", "t-result");
+        var rimg = document.createElement("img");
+        rimg.src = t.resultPhoto;
+        rimg.alt = "Resultado de " + t.name;
+        rimg.loading = "lazy";
+        result.appendChild(rimg);
+        card.appendChild(result);
+      }
       container.appendChild(card);
     });
 

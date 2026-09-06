@@ -45,7 +45,8 @@ const QUIZ_CONTENT = {
     disclaimer: "Espaços reservados para depoimentos reais. Nenhum depoimento foi inventado.",
     testimonials: [
       {
-        photo: null, // inserir caminho da foto real
+        photo: "Alunas/1.webp",        // foto de perfil da aluna
+        resultPhoto: "Resultado/1.webp", // foto do resultado dela
         quote: "[INSERIR DEPOIMENTO REAL]",
         name: "[INSERIR NOME REAL]",
         before: "[Situação inicial]",
@@ -53,7 +54,8 @@ const QUIZ_CONTENT = {
         result: "[Resultado]"
       },
       {
-        photo: null,
+        photo: "Alunas/2.webp",
+        resultPhoto: "Resultado/2.webp",
         quote: "[INSERIR DEPOIMENTO REAL]",
         name: "[INSERIR NOME REAL]",
         before: "[Situação inicial]",
@@ -61,7 +63,8 @@ const QUIZ_CONTENT = {
         result: "[Resultado]"
       },
       {
-        photo: null,
+        photo: "Alunas/3.webp",
+        resultPhoto: "Resultado/3.webp",
         quote: "[INSERIR DEPOIMENTO REAL]",
         name: "[INSERIR NOME REAL]",
         before: "[Situação inicial]",
@@ -72,14 +75,16 @@ const QUIZ_CONTENT = {
   },
 
   /* ---------- IMAGENS (placeholders — substituir por imagens reais) ---------- */
+  /* Imagens na ordem numérica da pasta, aplicadas na ordem das telas */
   images: {
-    hero: null,        // casa bonita com plantas
-    connection: null,  // planta recebida ou comprada
-    pain: null,        // planta com aparência debilitada
-    discovery: null,   // mãos observando folhas/terra
-    evolution: null,   // planta saudável
-    emotional: null,   // canto aconchegante da casa
-    offer: null        // produto/material do método
+    hero: "Imagens/1.webp",        // tela 1 — destino
+    connection: "Imagens/2.webp",  // tela 2 — conexão
+    pain: "Imagens/3.webp",        // tela 5 — dor emocional
+    memory: "Imagens/4.webp",      // tela 6 — aprofundamento
+    discovery: "Imagens/5.webp",   // tela 8 — descoberta
+    evolution: "Imagens/6.webp",   // tela 11 — evolução
+    emotional: "Imagens/7.webp",   // tela 17 — fechamento emocional
+    offer: null                    // tela 19 — oferta (aguardando imagem do produto)
   },
 
   /* ---------- PERSONALIZAÇÃO DA TELA FINAL ----------
@@ -198,6 +203,7 @@ const QUIZ_CONTENT = {
     {
       id: "aprofundamento",
       type: "story",
+      image: "memory",
       paragraphs: [
         "Porque no fundo não é só sobre uma planta.",
         "É sobre aquele cantinho que você queria deixar mais bonito.",
