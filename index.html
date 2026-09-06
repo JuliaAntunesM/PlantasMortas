@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Aprenda a entender o que suas plantas precisam e cuide delas com mais segurança.">
+  <title>Suas plantas estão tentando te dizer algo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="progress-wrap" id="progress-wrap" hidden>
+      <div class="progress-label" id="progress-label"></div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-aria">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </header>
+
+    <main class="screen-stage" id="screen-stage" aria-live="polite">
+      <!-- telas renderizadas via JS -->
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

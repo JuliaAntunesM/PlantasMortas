@@ -1,0 +1,333 @@
+/* ============================================================
+   STORY QUIZ — Plantas
+   Paleta: verde sálvia, oliva suave, creme, bege, branco quente,
+   marrom terroso. Mobile-first.
+   ============================================================ */
+
+:root {
+  --sage: #9caf88;
+  --sage-deep: #7d9270;
+  --olive: #6b7a4f;
+  --olive-dark: #4d5a38;
+  --cream: #f7f3ea;
+  --beige: #e8dfcf;
+  --warm-white: #fdfbf6;
+  --earth: #8a6f55;
+  --earth-dark: #5c4a38;
+  --ink: #3d3a32;
+  --ink-soft: #6b675c;
+  --card: #ffffff;
+  --radius: 18px;
+  --shadow: 0 6px 24px rgba(77, 90, 56, 0.10);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Karla", -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--warm-white);
+  box-shadow: 0 0 40px rgba(77, 90, 56, 0.06);
+}
+
+/* ---------- Barra de progresso ---------- */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 14px 20px 10px;
+  background: linear-gradient(var(--warm-white) 80%, transparent);
+}
+.progress-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+  text-align: center;
+}
+.progress-track {
+  height: 6px;
+  background: var(--beige);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--sage), var(--olive));
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+/* ---------- Palco das telas ---------- */
+.screen-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 22px 40px;
+}
+
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: screenIn 0.45s ease both;
+}
+.screen.leaving { animation: screenOut 0.25s ease both; }
+
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes screenOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen, .screen.leaving, .progress-fill { animation: none; transition: none; }
+}
+
+/* ---------- Imagem / placeholder ---------- */
+.image-slot {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  margin-bottom: 22px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--beige), #dfe6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--olive-dark);
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  padding: 12px;
+}
+.image-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Tipografia ---------- */
+.screen p {
+  font-size: 1.08rem;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.screen p.lead { font-size: 1.18rem; }
+
+.highlight {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--olive-dark);
+  line-height: 1.4;
+  margin: 20px 0;
+  padding-left: 16px;
+  border-left: 3px solid var(--sage);
+}
+
+.question-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  margin: 18px 0 20px;
+  line-height: 1.35;
+}
+
+/* ---------- Botão primário ---------- */
+.btn-primary {
+  display: block;
+  width: 100%;
+  margin-top: 26px;
+  padding: 17px 24px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--warm-white);
+  background: var(--olive);
+  border: none;
+  border-radius: 99px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(107, 122, 79, 0.35);
+  transition: transform 0.15s ease, background 0.2s ease;
+  min-height: 52px;
+}
+.btn-primary:hover { background: var(--olive-dark); }
+.btn-primary:active { transform: scale(0.97); }
+
+.btn-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 12px;
+}
+
+/* ---------- Opções de resposta ---------- */
+.options { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+
+.option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 16px 18px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--beige);
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  min-height: 52px;
+}
+.option:hover { border-color: var(--sage); }
+.option:active { transform: scale(0.98); }
+.option.selected {
+  background: #eef2e6;
+  border-color: var(--olive);
+  transform: scale(0.98);
+}
+
+/* ---------- Provas ---------- */
+.proof-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.proof-subtitle { color: var(--ink-soft); margin-bottom: 20px; }
+
+.testimonial-card {
+  background: var(--card);
+  border: 1.5px dashed var(--sage);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.testimonial-card .photo-slot {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.testimonial-card .photo-slot img { width: 100%; height: 100%; object-fit: cover; }
+.testimonial-card blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.testimonial-card .t-name { font-weight: 700; color: var(--olive-dark); }
+.testimonial-card .t-meta { font-size: 0.85rem; color: var(--ink-soft); margin-top: 6px; }
+.proof-disclaimer {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ---------- Oferta ---------- */
+.offer-head {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.offer-sub { color: var(--ink-soft); margin-bottom: 18px; }
+.offer-personal {
+  background: #eef2e6;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-style: italic;
+  color: var(--olive-dark);
+  margin-bottom: 18px;
+}
+.offer-product {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--earth-dark);
+  margin-bottom: 4px;
+}
+.offer-section-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--earth);
+  margin: 20px 0 10px;
+}
+.module-card {
+  background: var(--card);
+  border: 1px solid var(--beige);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.module-card .m-title { font-weight: 700; color: var(--olive-dark); }
+.module-card .m-text { font-size: 0.92rem; color: var(--ink-soft); }
+.offer-box {
+  background: var(--card);
+  border: 1px solid var(--beige);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.offer-box strong { color: var(--ink); }
+.placeholder-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--beige);
+  color: var(--earth-dark);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 640px) {
+  body { padding: 24px 0; }
+  .app { border-radius: 24px; min-height: calc(100dvh - 48px); }
+}
