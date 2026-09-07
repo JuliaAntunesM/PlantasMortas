@@ -27,6 +27,7 @@ const QUIZ_CONTENT = {
       { title: "Módulo 4 — Monte sua rotina de cuidados", text: "Tenha um jeito simples de cuidar das suas plantas sem depender de tentativa e erro." }
     ],
     bonus: "Guia rápido de cuidados para consultar sempre que surgir uma dúvida.",
+    originalPrice: "R$ 188,00",
     price: "R$ 47,00",
     specialCondition: "Acesso completo com pagamento único.",
     guarantee: "7 dias para conhecer o método com tranquilidade.",
@@ -36,6 +37,19 @@ const QUIZ_CONTENT = {
       "Quero aprender esse método",
       "Quero começar agora"
     ]
+  },
+
+  /* ---------- PORTAS (mini-jogo de desconto) ----------
+     Qualquer porta escolhida revela o desconto principal;
+     as demais mostram descontos menores. */
+  doors: {
+    title: "Antes de continuar, uma surpresa.",
+    subtitle: "Escolha uma das três portas. Atrás de uma delas pode ter uma condição especial para você.",
+    winDiscount: 75,
+    loseDiscounts: [10, 15, 20, 25, 30],
+    winText: "Você ganhou 75% de desconto!",
+    winSubtext: "O Método Casa Verde sai de R$ 188,00 por apenas R$ 47,00.",
+    button: "Resgatar meu desconto"
   },
 
   /* ---------- PROVAS ----------
@@ -400,7 +414,13 @@ const QUIZ_CONTENT = {
       button: "Quero aprender esse método"
     },
 
-    /* TELA 19 — OFERTA */
+    /* TELA 19 — PORTAS (mini-jogo de desconto) */
+    {
+      id: "portas",
+      type: "doors"
+    },
+
+    /* TELA 20 — OFERTA */
     {
       id: "oferta",
       type: "offer",

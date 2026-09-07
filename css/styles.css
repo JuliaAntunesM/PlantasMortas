@@ -330,6 +330,70 @@ body {
   margin-top: 4px;
 }
 
+/* ---------- Portas (mini-jogo) ---------- */
+.doors-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.doors-subtitle { color: var(--ink-soft); margin-bottom: 22px; }
+.doors-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.door {
+  flex: 1;
+  max-width: 110px;
+  aspect-ratio: 3 / 4;
+  border: 2px solid var(--sage);
+  border-radius: 14px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow);
+}
+.door:not(.revealed):hover { transform: translateY(-4px); }
+.door .door-icon { font-size: 2rem; }
+.door .door-num { font-size: 0.78rem; color: var(--ink-soft); }
+.door.revealed {
+  cursor: default;
+  background: var(--beige);
+  border-color: var(--beige);
+}
+.door.winner {
+  background: #eef2e6;
+  border-color: var(--olive);
+  box-shadow: 0 6px 18px rgba(90, 110, 70, 0.25);
+}
+.door .door-value {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.door .door-value.win { color: var(--olive-dark); font-size: 1.6rem; }
+.door .door-off { font-size: 0.7rem; color: var(--ink-soft); }
+.doors-result { text-align: center; }
+.doors-win {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  margin-bottom: 6px;
+}
+.doors-win-sub { color: var(--ink-soft); margin-bottom: 18px; }
+
 /* ---------- Oferta ---------- */
 .offer-head {
   font-family: var(--font-display);
@@ -380,6 +444,15 @@ body {
   color: var(--ink-soft);
 }
 .offer-box strong { color: var(--ink); }
+.offer-price .price-old {
+  text-decoration: line-through;
+  color: var(--ink-soft);
+}
+.offer-price .price-new {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--olive-dark);
+}
 .placeholder-tag {
   display: inline-block;
   font-size: 0.7rem;

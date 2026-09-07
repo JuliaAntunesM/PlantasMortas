@@ -155,6 +155,57 @@
     container.appendChild(renderPrimaryButton(screen.button || "Continuar", next));
   }
 
+  /* ---------- Mini-jogo das 3 portas ---------- */
+
+  function renderDoors(screen, container) {
+    var doors = QUIZ_CONTENT.doors;
+    container.appendChild(el("h2", "doors-title", doors.title));
+    container.appendChild(el("p", "doors-subtitle", doors.subtitle));
+
+    var row = el("div", "doors-row");
+    var result = el("div", "doors-result");
+    var revealed = false;
+
+    // sorteia dois descontos menores, sem repetir
+    var pool = doors.loseDiscounts.slice();
+    function pickLose() {
+      var i = Math.floor(Math.random() * pool.length);
+      return pool.splice(i, 1)[0];
+    }
+    var loses = [pickLose(), pickLose()];
+
+    for (var i = 0; i < 3; i++) {
+      (function (index) {
+        var door = el("button", "door");
+        door.type = "button";
+        door.appendChild(el("span", "door-icon", "🚪"));
+        door.appendChild(el("span", "door-num", "Porta " + (index + 1)));
+        door.addEventListener("click", function () {
+          if (revealed) return;
+          revealed = true;
+          var loseIdx = 0;
+          row.querySelectorAll(".door").forEach(function (d, di) {
+            d.disabled = true;
+            d.classList.add("revealed");
+            var isChosen = di === index;
+            if (isChosen) d.classList.add("winner");
+            var val = isChosen ? doors.winDiscount : loses[loseIdx++];
+            d.innerHTML = "";
+            d.appendChild(el("span", "door-value" + (isChosen ? " win" : ""), val + "%"));
+            d.appendChild(el("span", "door-off", "de desconto"));
+          });
+          result.appendChild(el("div", "doors-win", doors.winText));
+          result.appendChild(el("p", "doors-win-sub", doors.winSubtext));
+          result.appendChild(renderPrimaryButton(doors.button, next));
+          track("door_picked", { door: index + 1 });
+        });
+        row.appendChild(door);
+      })(i);
+    }
+    container.appendChild(row);
+    container.appendChild(result);
+  }
+
   function personalNote() {
     var map = QUIZ_CONTENT.personalization || {};
     var notes = [];
@@ -187,7 +238,6 @@
     });
 
     [["Bônus", offer.bonus],
-     ["Investimento", offer.price],
      ["Condição especial", offer.specialCondition],
      ["Garantia", offer.guarantee]
     ].forEach(function (row) {
@@ -199,11 +249,22 @@
       container.appendChild(box);
     });
 
+    // investimento: preço original riscado + preço com desconto
+    var priceBox = el("div", "offer-box offer-price");
+    var priceLabel = document.createElement("strong");
+    priceLabel.textContent = "Investimento: ";
+    priceBox.appendChild(priceLabel);
+    if (offer.originalPrice) {
+      priceBox.appendChild(el("span", "price-old", offer.originalPrice));
+      priceBox.appendChild(document.createTextNode(" por apenas "));
+    }
+    priceBox.appendChild(el("span", "price-new", offer.price));
+    container.appendChild(priceBox);
+
     container.appendChild(renderPrimaryButton(offer.cta, function () {
       track("cta_clicked");
       track("purchase_started");
-      // TODO: apontar para o checkout real quando definido.
-      alert("Aqui entra o link do checkout quando a oferta estiver definida.");
+      window.location.href = "https://lastlink.com/p/C4B5CCC45/checkout-payment/";
     }));
   }
 
@@ -234,6 +295,7 @@
     if (screen.type === "story") renderStory(screen, container);
     else if (screen.type === "question") renderQuestion(screen, container);
     else if (screen.type === "proof") renderProof(screen, container);
+    else if (screen.type === "doors") renderDoors(screen, container);
     else if (screen.type === "offer") renderOffer(screen, container);
 
     stage.appendChild(container);
