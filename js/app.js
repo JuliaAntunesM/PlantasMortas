@@ -175,9 +175,7 @@
     var note = personalNote();
     if (note) container.appendChild(el("div", "offer-personal", note));
 
-    var product = el("div", "offer-product", offer.productName);
-    product.appendChild(el("span", "placeholder-tag", "placeholder"));
-    container.appendChild(product);
+    container.appendChild(el("div", "offer-product", offer.productName));
     container.appendChild(el("p", null, offer.description));
 
     container.appendChild(el("div", "offer-section-title", offer.learnTitle));
@@ -198,7 +196,6 @@
       strong.textContent = row[0] + ": ";
       box.appendChild(strong);
       box.appendChild(document.createTextNode(row[1]));
-      box.appendChild(el("span", "placeholder-tag", "placeholder"));
       container.appendChild(box);
     });
 

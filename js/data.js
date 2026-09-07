@@ -13,23 +13,23 @@ const QUIZ_CONTENT = {
     shift: 'De "quando eu devo regar?" para "o que minha planta precisa agora?"'
   },
 
-  /* ---------- OFERTA (placeholders — preencher depois) ---------- */
+  /* ---------- OFERTA ---------- */
   offer: {
-    productName: "[NOME DO PRODUTO]",
+    productName: "Método Casa Verde",
     headline: "Aprenda a entender o que suas plantas precisam e cuide delas com muito mais segurança.",
     subheadline: "Um método simples e prático para transformar o cuidado com plantas em algo que você entende, em vez de apenas tentar adivinhar.",
-    description: "[DESCRIÇÃO DO PRODUTO]",
+    description: "Aprenda a entender o que suas plantas precisam e cuide delas com mais segurança, mesmo começando do zero.",
     learnTitle: "O que você vai aprender",
     modules: [
-      { title: "[MÓDULO 1]", text: "[Descrição do módulo 1]" },
-      { title: "[MÓDULO 2]", text: "[Descrição do módulo 2]" },
-      { title: "[MÓDULO 3]", text: "[Descrição do módulo 3]" },
-      { title: "[MÓDULO 4]", text: "[Descrição do módulo 4]" }
+      { title: "Módulo 1 — Entenda sua planta", text: "Aprenda a identificar o que cada planta precisa de luz, água e ambiente." },
+      { title: "Módulo 2 — Acerte na rega", text: "Entenda quando regar, quando esperar e como evitar os excessos mais comuns." },
+      { title: "Módulo 3 — Leia os sinais da planta", text: "Descubra o que folhas, terra e aparência podem indicar sobre os cuidados necessários." },
+      { title: "Módulo 4 — Monte sua rotina de cuidados", text: "Tenha um jeito simples de cuidar das suas plantas sem depender de tentativa e erro." }
     ],
-    bonus: "[BÔNUS]",
-    price: "[PREÇO]",
-    specialCondition: "[CONDIÇÃO ESPECIAL]",
-    guarantee: "[GARANTIA]",
+    bonus: "Guia rápido de cuidados para consultar sempre que surgir uma dúvida.",
+    price: "R$ 47,00",
+    specialCondition: "Acesso completo com pagamento único.",
+    guarantee: "7 dias para conhecer o método com tranquilidade.",
     cta: "Quero começar a cuidar melhor das minhas plantas",
     ctaAlternatives: [
       "Quero minhas plantas vivas e bonitas",
