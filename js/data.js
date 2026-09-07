@@ -103,7 +103,7 @@ const QUIZ_CONTENT = {
   /* ---------- IMAGENS (placeholders — substituir por imagens reais) ---------- */
   /* Imagens na ordem numérica da pasta, aplicadas na ordem das telas */
   images: {
-    hero: "Imagens/1.webp",        // tela 1 — destino
+    hero: "Imagens/primeira.webp", // tela 1 — destino
     connection: "Imagens/2.webp",  // tela 2 — conexão
     pain: "Imagens/3.webp",        // tela 5 — dor emocional
     memory: "Imagens/4.webp",      // tela 6 — aprofundamento
