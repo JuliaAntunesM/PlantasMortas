@@ -328,69 +328,42 @@ body {
   margin-top: 4px;
 }
 
-/* ---------- Portas (mini-jogo) ---------- */
-.doors-title {
+/* ---------- Título de história / resultado ---------- */
+.story-title {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 600;
   color: var(--olive-dark);
   line-height: 1.35;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
-.doors-subtitle { color: var(--ink-soft); margin-bottom: 22px; }
-.doors-row {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.door {
-  flex: 1;
-  max-width: 110px;
-  aspect-ratio: 3 / 4;
-  border: 2px solid var(--sage);
-  border-radius: 14px;
-  background: var(--card);
+
+/* ---------- Passos do mecanismo (Observar → Entender → Agir) ---------- */
+.steps {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  cursor: pointer;
-  font-family: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: var(--shadow);
+  gap: 4px;
+  margin: 0 0 20px;
 }
-.door:not(.revealed):hover { transform: translateY(-4px); }
-.door .door-icon { font-size: 2rem; }
-.door .door-num { font-size: 0.78rem; color: var(--ink-soft); }
-.door.revealed {
-  cursor: default;
-  background: var(--beige);
-  border-color: var(--beige);
-}
-.door.winner {
-  background: #eef2e6;
-  border-color: var(--olive);
-  box-shadow: 0 6px 18px rgba(90, 110, 70, 0.25);
-}
-.door .door-value {
+.steps-item {
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--ink-soft);
-}
-.door .door-value.win { color: var(--olive-dark); font-size: 1.6rem; }
-.door .door-off { font-size: 0.7rem; color: var(--ink-soft); }
-.doors-result { text-align: center; }
-.doors-win {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--olive-dark);
-  margin-bottom: 6px;
+  background: #eef2e6;
+  border-radius: 12px;
+  padding: 10px 22px;
+  width: 100%;
+  text-align: center;
 }
-.doors-win-sub { color: var(--ink-soft); margin-bottom: 18px; }
+.steps-arrow {
+  color: var(--sage);
+  font-size: 1.1rem;
+  line-height: 1;
+}
 
 /* ---------- Oferta ---------- */
 .offer-head {
@@ -402,6 +375,48 @@ body {
   margin-bottom: 10px;
 }
 .offer-sub { color: var(--ink-soft); margin-bottom: 18px; }
+
+/* mecanismo na oferta */
+.mechanism {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 22px;
+}
+.mechanism-step {
+  width: 100%;
+  background: #eef2e6;
+  border-radius: 12px;
+  padding: 12px 18px;
+  text-align: center;
+}
+.mechanism-step-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive-dark);
+}
+.mechanism-step-text { font-size: 0.88rem; color: var(--ink-soft); }
+
+.offer-modules-intro {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: -6px 0 14px;
+}
+.offer-access {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  text-align: center;
+  background: #eef2e6;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 20px 0 14px;
+}
 .offer-personal {
   background: #eef2e6;
   border-radius: var(--radius);

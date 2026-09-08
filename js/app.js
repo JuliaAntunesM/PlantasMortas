@@ -71,8 +71,19 @@
 
   /* ---------- Tipos de tela ---------- */
 
+  function renderSteps(steps, container) {
+    var wrap = el("div", "steps");
+    steps.forEach(function (s, i) {
+      if (i > 0) wrap.appendChild(el("div", "steps-arrow", "↓"));
+      wrap.appendChild(el("div", "steps-item", s));
+    });
+    container.appendChild(wrap);
+  }
+
   function renderStory(screen, container) {
     if (screen.image) container.appendChild(renderImage(screen.image));
+    if (screen.title) container.appendChild(el("h2", "story-title", screen.title));
+    if (screen.steps) renderSteps(screen.steps, container);
     renderParagraphs(screen, container);
     renderHighlight(screen, container);
     container.appendChild(renderPrimaryButton(screen.button || "Continuar", function () {
@@ -105,105 +116,58 @@
     container.appendChild(list);
   }
 
+  function renderTestimonialCard(t) {
+    var card = el("div", "testimonial-card");
+
+    // cabeçalho: foto + nome/idade/contexto
+    var head = el("div", "t-head");
+    var photo = el("div", "photo-slot");
+    if (t.photo) {
+      var img = document.createElement("img");
+      img.src = t.photo;
+      img.alt = t.name;
+      photo.appendChild(img);
+    } else {
+      photo.textContent = "[foto]";
+    }
+    head.appendChild(photo);
+    var who = el("div", "t-who");
+    who.appendChild(el("div", "t-name", t.name + (t.age ? ", " + t.age + " anos" : "")));
+    if (t.context) who.appendChild(el("div", "t-context", t.context));
+    head.appendChild(who);
+    card.appendChild(head);
+
+    // título emocional + depoimento
+    card.appendChild(el("blockquote", "t-title", "“" + t.title + "”"));
+    (t.text || "").split(/\n\n+/).forEach(function (para) {
+      card.appendChild(el("p", "t-text", para));
+    });
+    if (t.closing) card.appendChild(el("p", "t-closing", t.closing));
+
+    if (t.resultPhoto) {
+      var result = el("div", "t-result");
+      var rimg = document.createElement("img");
+      rimg.src = t.resultPhoto;
+      rimg.alt = "Resultado de " + t.name;
+      rimg.loading = "lazy";
+      result.appendChild(rimg);
+      card.appendChild(result);
+    }
+    return card;
+  }
+
   function renderProof(screen, container) {
     var proof = QUIZ_CONTENT.proof;
     container.appendChild(el("h2", "proof-title", proof.title));
     container.appendChild(el("p", "proof-subtitle", proof.subtitle));
 
     proof.testimonials.forEach(function (t) {
-      var card = el("div", "testimonial-card");
-
-      // cabeçalho: foto + nome/idade/contexto
-      var head = el("div", "t-head");
-      var photo = el("div", "photo-slot");
-      if (t.photo) {
-        var img = document.createElement("img");
-        img.src = t.photo;
-        img.alt = t.name;
-        photo.appendChild(img);
-      } else {
-        photo.textContent = "[foto]";
-      }
-      head.appendChild(photo);
-      var who = el("div", "t-who");
-      who.appendChild(el("div", "t-name", t.name + (t.age ? ", " + t.age + " anos" : "")));
-      if (t.context) who.appendChild(el("div", "t-context", t.context));
-      head.appendChild(who);
-      card.appendChild(head);
-
-      // título emocional + depoimento
-      card.appendChild(el("blockquote", "t-title", "“" + t.title + "”"));
-      (t.text || "").split(/\n\n+/).forEach(function (para) {
-        card.appendChild(el("p", "t-text", para));
-      });
-      if (t.closing) card.appendChild(el("p", "t-closing", t.closing));
-
-      if (t.resultPhoto) {
-        var result = el("div", "t-result");
-        var rimg = document.createElement("img");
-        rimg.src = t.resultPhoto;
-        rimg.alt = "Resultado de " + t.name;
-        rimg.loading = "lazy";
-        result.appendChild(rimg);
-        card.appendChild(result);
-      }
-      container.appendChild(card);
+      container.appendChild(renderTestimonialCard(t));
     });
 
     if (proof.footer) container.appendChild(el("p", "proof-footer", proof.footer));
     if (proof.disclaimer) container.appendChild(el("p", "proof-disclaimer", proof.disclaimer));
     container.appendChild(renderPrimaryButton(screen.button || "Continuar", next));
-  }
-
-  /* ---------- Mini-jogo das 3 portas ---------- */
-
-  function renderDoors(screen, container) {
-    var doors = QUIZ_CONTENT.doors;
-    container.appendChild(el("h2", "doors-title", doors.title));
-    container.appendChild(el("p", "doors-subtitle", doors.subtitle));
-
-    var row = el("div", "doors-row");
-    var result = el("div", "doors-result");
-    var revealed = false;
-
-    // sorteia dois descontos menores, sem repetir
-    var pool = doors.loseDiscounts.slice();
-    function pickLose() {
-      var i = Math.floor(Math.random() * pool.length);
-      return pool.splice(i, 1)[0];
-    }
-    var loses = [pickLose(), pickLose()];
-
-    for (var i = 0; i < 3; i++) {
-      (function (index) {
-        var door = el("button", "door");
-        door.type = "button";
-        door.appendChild(el("span", "door-icon", "🚪"));
-        door.appendChild(el("span", "door-num", "Porta " + (index + 1)));
-        door.addEventListener("click", function () {
-          if (revealed) return;
-          revealed = true;
-          var loseIdx = 0;
-          row.querySelectorAll(".door").forEach(function (d, di) {
-            d.disabled = true;
-            d.classList.add("revealed");
-            var isChosen = di === index;
-            if (isChosen) d.classList.add("winner");
-            var val = isChosen ? doors.winDiscount : loses[loseIdx++];
-            d.innerHTML = "";
-            d.appendChild(el("span", "door-value" + (isChosen ? " win" : ""), val + "%"));
-            d.appendChild(el("span", "door-off", "de desconto"));
-          });
-          result.appendChild(el("div", "doors-win", doors.winText));
-          result.appendChild(el("p", "doors-win-sub", doors.winSubtext));
-          result.appendChild(renderPrimaryButton(doors.button, next));
-          track("door_picked", { door: index + 1 });
-        });
-        row.appendChild(door);
-      })(i);
-    }
-    container.appendChild(row);
-    container.appendChild(result);
   }
 
   function personalNote() {
@@ -226,16 +190,42 @@
     var note = personalNote();
     if (note) container.appendChild(el("div", "offer-personal", note));
 
+    // mecanismo: Observar → Entender → Agir
+    if (offer.mechanismSteps) {
+      var mech = el("div", "mechanism");
+      offer.mechanismSteps.forEach(function (s, i) {
+        if (i > 0) mech.appendChild(el("div", "steps-arrow", "↓"));
+        var step = el("div", "mechanism-step");
+        step.appendChild(el("div", "mechanism-step-title", s.title));
+        step.appendChild(el("div", "mechanism-step-text", s.text));
+        mech.appendChild(step);
+      });
+      container.appendChild(mech);
+    }
+
     container.appendChild(el("div", "offer-product", offer.productName));
     container.appendChild(el("p", null, offer.description));
 
     container.appendChild(el("div", "offer-section-title", offer.learnTitle));
+    if (offer.modulesIntro) container.appendChild(el("p", "offer-modules-intro", offer.modulesIntro));
     offer.modules.forEach(function (m) {
       var card = el("div", "module-card");
       card.appendChild(el("div", "m-title", m.title));
       card.appendChild(el("div", "m-text", m.text));
       container.appendChild(card);
     });
+
+    // provas reais: reforçam que outras pessoas conseguiram
+    var proof = QUIZ_CONTENT.proof;
+    if (proof && proof.testimonials && proof.testimonials.length) {
+      container.appendChild(el("div", "offer-section-title", "Quem aprendeu a observar os sinais"));
+      proof.testimonials.forEach(function (t) {
+        container.appendChild(renderTestimonialCard(t));
+      });
+      if (proof.footer) container.appendChild(el("p", "proof-footer", proof.footer));
+    }
+
+    if (offer.accessLine) container.appendChild(el("div", "offer-access", offer.accessLine));
 
     [["Bônus", offer.bonus],
      ["Condição especial", offer.specialCondition],
@@ -292,10 +282,9 @@
     var container = el("section", "screen");
     container.dataset.screenId = screen.id;
 
-    if (screen.type === "story") renderStory(screen, container);
+    if (screen.type === "story" || screen.type === "result") renderStory(screen, container);
     else if (screen.type === "question") renderQuestion(screen, container);
     else if (screen.type === "proof") renderProof(screen, container);
-    else if (screen.type === "doors") renderDoors(screen, container);
     else if (screen.type === "offer") renderOffer(screen, container);
 
     stage.appendChild(container);
